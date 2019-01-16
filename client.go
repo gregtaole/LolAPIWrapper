@@ -3,6 +3,7 @@ package lolapiwrapper
 import (
 	"github.com/gregtaole/lolapiwrapper/championmastery"
 	"github.com/gregtaole/lolapiwrapper/league"
+	"github.com/gregtaole/lolapiwrapper/match"
 )
 
 /*
@@ -13,16 +14,19 @@ type Client struct {
 	Region             string
 	ChampionMasteryAPI championmastery.ChampionMastery
 	LeagueAPI          league.League
+	MatchAPI           match.Match
 }
 
 func NewClient(APIKey string, region string) Client {
 	cm := championmastery.NewChampionMastery(APIKey, region)
 	l := league.NewLeague(APIKey, region)
+	m := match.NewMatch(APIKey, region)
 
 	return Client{
 		APIKey:             APIKey,
 		Region:             region,
 		ChampionMasteryAPI: cm,
 		LeagueAPI:          l,
+		MatchAPI:           m,
 	}
 }
