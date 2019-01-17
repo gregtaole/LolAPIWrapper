@@ -308,7 +308,7 @@ type MatchQueryParams struct {
 	BeginIndex int
 }
 
-func NewMatch(APIKey string, region string) Match {
+func NewMatch(APIKey, region string) Match {
 	return Match{
 		APIKey: APIKey,
 		Region: region,
@@ -333,7 +333,6 @@ func (m Match) MatchesByID(matchID string) (*MatchDTO, error) {
 		return nil, err
 	}
 	return &matchDTO, nil
-
 }
 
 func (m Match) MatchListByAccount(accountID string, params MatchQueryParams) (*MatchListDTO, error) {

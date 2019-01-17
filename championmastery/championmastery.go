@@ -33,7 +33,7 @@ type ChampionMasteryDTO struct {
 	SummonerID                   string `json:"summonerId"`
 }
 
-func NewChampionMastery(APIKey string, region string) ChampionMastery {
+func NewChampionMastery(APIKey, region string) ChampionMastery {
 	return ChampionMastery{
 		APIKey: APIKey,
 		Region: region,

@@ -78,7 +78,7 @@ type MiniSeriesDTO struct {
 	Progress string `json:"progress"`
 }
 
-func NewLeague(APIKey string, region string) League {
+func NewLeague(APIKey, region string) League {
 	return League{
 		APIKey: APIKey,
 		Region: region,
