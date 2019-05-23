@@ -1,11 +1,11 @@
 package lolapiwrapper
 
 import (
-	"bufio"
 	"context"
 	"encoding/json"
 	"fmt"
-	"io"
+	"io/ioutil"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"os"
@@ -70,17 +70,17 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 		t.Fatalf("could not find test data: %v", err)
 	}
 	defer file.Close()
-	dataMap := make(map[string]Data)
-	decoder := json.NewDecoder(bufio.NewReader(file))
-	for {
-		var datum Data
-		if err := decoder.Decode(&datum); err == io.EOF {
-			break
-		} else if err != nil {
-			t.Fatalf("could not decode test data: %v", err)
-		}
-		dataMap[datum.ID] = datum
+	var data []Data
+	b, err := ioutil.ReadAll(file)
+	if err != nil {
+		log.Fatalf("could not read test data: %v", err)
 	}
+	err = json.Unmarshal(b, &data)
+	if err != nil {
+		log.Fatalf("could not unmarshal test data: %v", err)
+	}
+	dataMap := make(map[string]Data)
+
 	for _, test := range tests {
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/json")
