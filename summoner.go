@@ -58,23 +58,6 @@ func (c *client) SummonerByPuuid(ctx context.Context, puuid string) (*SummonerDT
 
 // SummonerByID gets summoner informatino for the given ID
 func (c *client) SummonerByID(ctx context.Context, ID string) (*SummonerDTO, error) {
-	/* resp, err := util.GetResponse(s.APIKey, s.Region, "summoner/v4/summoners", ID)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("server responded with error code %v", resp.StatusCode)
-	}
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	var summonerDTO SummonerDTO
-	if err = json.Unmarshal(body, &summonerDTO); err != nil {
-		return nil, err
-	}
-	return &summonerDTO, nil */
 	var res SummonerDTO
 	url := filepath.Join(summonerRootURL, ID)
 	err := c.query(ctx, url, nil, &res)

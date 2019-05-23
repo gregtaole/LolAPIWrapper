@@ -49,7 +49,7 @@ func (c *client) ChampionMasteriesBySummonerByChampion(ctx context.Context, summ
 	return &res, nil
 }
 
-// ScoresBySummoner gets all mastery scores for summonerID
+// ScoresBySummoner gets the total mastery score for summonerID
 func (c *client) ScoresBySummoner(ctx context.Context, summonerID string) (*int, error) {
 	var res int
 	url := filepath.Join(masteryRootURL, scoresURL, summonerID)
