@@ -3,7 +3,7 @@ name: default
 
 steps:
   - name: test
-  image: golang
-  commands:
-  - go build
-  - go test
+    image: golang
+    commands:
+    - go build
+    - go test
