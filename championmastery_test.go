@@ -63,7 +63,7 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 	}
 	type Data struct {
 		ID   string
-		data string
+		data []ChampionMasteryDTO
 	}
 	file, err := os.Open("championmastery_test.json")
 	if err != nil {
@@ -84,7 +84,11 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 	for _, test := range tests {
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/json")
-			fmt.Fprintf(w, dataMap[test.summonerID].data)
+			jsonData, err := json.Marshal(dataMap[test.summonerID].data)
+			if err != nil {
+				t.Fatalf("could marshal test data to json: %v", err)
+			}
+			fmt.Fprintf(w, "%s", jsonData)
 		}))
 		defer server.Close()
 		cm := ChampionMasteryDTO{}
