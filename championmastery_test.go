@@ -75,7 +75,6 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 	if err != nil {
 		log.Fatalf("could not read test data: %v", err)
 	}
-	// random comment
 	err = json.Unmarshal(b, &data)
 	if err != nil {
 		log.Fatalf("could not unmarshal test data: %v", err)
