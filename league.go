@@ -1,12 +1,8 @@
-package league
+package lolapiwrapper
 
 import (
-	"encoding/json"
+	"context"
 	"fmt"
-	"io/ioutil"
-	"net/http"
-
-	"github.com/gregtaole/lolapiwrapper/util"
 )
 
 type QueueType string
@@ -18,18 +14,13 @@ const (
 )
 
 const (
-	rootURL        = "league/v4/"
+	leagueRootURL  = "league/v4/"
 	challengerURL  = "challengerleagues/by-queue"
 	grandmasterURL = "grandmasterleagues/by-queue"
 	leaguesURL     = "leagues"
 	masterURL      = "masterleagues/by-queue"
 	positionsURL   = "positions/by-summoner"
 )
-
-type League struct {
-	APIKey string
-	Region string
-}
 
 type LeagueListDTO struct {
 	LeagueID string          `json:"leagueId"`
@@ -78,15 +69,9 @@ type MiniSeriesDTO struct {
 	Progress string `json:"progress"`
 }
 
-func NewLeague(APIKey, region string) League {
-	return League{
-		APIKey: APIKey,
-		Region: region,
-	}
-}
-
-func (l League) ChallengerLeagueByQueue(queue QueueType) (*LeagueListDTO, error) {
-	resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+challengerURL, string(queue))
+// ChallengerLeagueByQueue gets challenger leagues for the given queue type
+func (c *client) ChallengerLeagueByQueue(ctx context.Context, queue QueueType) (*LeagueListDTO, error) {
+	/* resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+challengerURL, string(queue))
 	if err != nil {
 		return nil, err
 	}
@@ -102,11 +87,13 @@ func (l League) ChallengerLeagueByQueue(queue QueueType) (*LeagueListDTO, error)
 	if err = json.Unmarshal(body, &leagueListDTO); err != nil {
 		return nil, err
 	}
-	return &leagueListDTO, nil
+	return &leagueListDTO, nil */
+	return nil, fmt.Errorf("not implemented")
 }
 
-func (l League) GrandmasterLeagueByQueue(queue QueueType) (*LeagueListDTO, error) {
-	resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+grandmasterURL, string(queue))
+// GrandmasterLeagueByQueue gets grandmaster leagues for the given queue type
+func (c *client) GrandmasterLeagueByQueue(ctx context.Context, queue QueueType) (*LeagueListDTO, error) {
+	/* resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+grandmasterURL, string(queue))
 	if err != nil {
 		return nil, err
 	}
@@ -122,11 +109,13 @@ func (l League) GrandmasterLeagueByQueue(queue QueueType) (*LeagueListDTO, error
 	if err = json.Unmarshal(body, &leagueListDTO); err != nil {
 		return nil, err
 	}
-	return &leagueListDTO, nil
+	return &leagueListDTO, nil */
+	return nil, fmt.Errorf("not implemented")
 }
 
-func (l League) MasterLeagueByQueue(queue QueueType) (*LeagueListDTO, error) {
-	resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+masterURL, string(queue))
+// MasterLeagueByQueue gets master leagues for the given queue type
+func (c *client) MasterLeagueByQueue(ctx context.Context, queue QueueType) (*LeagueListDTO, error) {
+	/* resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+masterURL, string(queue))
 	if err != nil {
 		return nil, err
 	}
@@ -142,11 +131,13 @@ func (l League) MasterLeagueByQueue(queue QueueType) (*LeagueListDTO, error) {
 	if err = json.Unmarshal(body, &leagueListDTO); err != nil {
 		return nil, err
 	}
-	return &leagueListDTO, nil
+	return &leagueListDTO, nil */
+	return nil, fmt.Errorf("not implemented")
 }
 
-func (l League) PositionsBySummoner(summonerID string) ([]LeaguePositionDTO, error) {
-	resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+positionsURL, summonerID)
+// PositionsBySummoner gets the positions for summonerID
+func (c *client) PositionsBySummoner(ctx context.Context, summonerID string) ([]LeaguePositionDTO, error) {
+	/* resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+positionsURL, summonerID)
 	if err != nil {
 		return nil, err
 	}
@@ -162,11 +153,13 @@ func (l League) PositionsBySummoner(summonerID string) ([]LeaguePositionDTO, err
 	if err = json.Unmarshal(body, &leaguePositionDTO); err != nil {
 		return nil, err
 	}
-	return leaguePositionDTO, nil
+	return leaguePositionDTO, nil */
+	return nil, fmt.Errorf("not implemented")
 }
 
-func (l League) Leagues(leagueID string) (*LeagueListDTO, error) {
-	resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+leaguesURL, leagueID)
+// Leagues gets the leagues for the given leagueID
+func (c *client) Leagues(ctx context.Context, leagueID string) (*LeagueListDTO, error) {
+	/* resp, err := util.GetResponse(l.APIKey, l.Region, rootURL+leaguesURL, leagueID)
 	if err != nil {
 		return nil, err
 	}
@@ -182,7 +175,8 @@ func (l League) Leagues(leagueID string) (*LeagueListDTO, error) {
 	if err = json.Unmarshal(body, &leagueListDTO); err != nil {
 		return nil, err
 	}
-	return &leagueListDTO, nil
+	return &leagueListDTO, nil */
+	return nil, fmt.Errorf("not implemented")
 }
 
 func (ll LeagueListDTO) String() string {

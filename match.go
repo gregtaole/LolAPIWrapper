@@ -1,26 +1,19 @@
-package match
+package lolapiwrapper
 
 import (
-	"encoding/json"
+	"context"
 	"fmt"
-	"io/ioutil"
-	"net/http"
+	"net/url"
+	"path/filepath"
 	"strings"
-
-	"github.com/gregtaole/lolapiwrapper/util"
 )
 
 const (
-	rootURL      = "match/v4/"
+	matchRootURL = "match/v4/"
 	matchURL     = "matches"
 	matchListURL = "matchlists/by-account"
 	timelineURL  = "timelines/by-match"
 )
-
-type Match struct {
-	APIKey string
-	Region string
-}
 
 type MatchDTO struct {
 	SeasonID              int                      `json:"seasonId"`
@@ -298,96 +291,47 @@ type MatchEventDTO struct {
 	BeforeID                int              `json:"beforeId"`
 }
 
-type MatchQueryParams struct {
-	Champion   []int
-	Queue      []int
-	Season     []int
-	EndTime    int
-	BeginTime  int
-	EndIndex   int
-	BeginIndex int
-}
-
-func NewMatch(APIKey, region string) Match {
-	return Match{
-		APIKey: APIKey,
-		Region: region,
-	}
-}
-
-func (m Match) MatchesByID(matchID string) (*MatchDTO, error) {
-	resp, err := util.GetResponse(m.APIKey, m.Region, rootURL+matchURL, matchID)
+// MatchesByID gets the match information for the given matchID
+func (c *client) MatchesByID(ctx context.Context, matchID string) (*MatchDTO, error) {
+	var res MatchDTO
+	url := filepath.Join(matchRootURL, matchURL, matchID)
+	err := c.query(ctx, url, nil, &res)
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("server responded with error code %v", resp.StatusCode)
-	}
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	var matchDTO MatchDTO
-	if err = json.Unmarshal(body, &matchDTO); err != nil {
-		return nil, err
-	}
-	return &matchDTO, nil
+	return &res, nil
 }
 
-func (m Match) MatchListByAccount(accountID string, params MatchQueryParams) (*MatchListDTO, error) {
-	if params.BeginIndex >= 0 && params.EndIndex >= 0 && params.BeginIndex < params.EndIndex {
+// MatchListByAccount gets the match list for the given accountID filtered by params
+func (c *client) MatchListByAccount(ctx context.Context, accountID string, params MatchQueryParams) (*MatchListDTO, error) {
+	if *params.BeginIndex >= 0 && *params.EndIndex >= 0 && *params.BeginIndex < *params.EndIndex {
 		return nil, fmt.Errorf("MatchQueryParams.BeginIndex should be greater than MatchQueryParams.EndIndex when both are passed: %v < %v", params.EndIndex, params.BeginIndex)
 	}
-	if params.BeginTime >= 0 && params.EndTime >= 0 && params.BeginTime < params.EndTime {
+	if *params.BeginTime >= 0 && *params.EndTime >= 0 && *params.BeginTime < *params.EndTime {
 		return nil, fmt.Errorf("MatchQueryParams.BeginTime should be greater than MatchQueryParams.EndTime when both are passed: %v < %v", params.EndTime, params.BeginTime)
 	}
-	queryParams := params.String()
-	client := &http.Client{}
-	url := fmt.Sprintf("https://%v.api.riotgames.com/lol/%v/%v%v", m.Region, rootURL+matchListURL, accountID, queryParams)
-	req, err := http.NewRequest("GET", url, nil)
-	if err != nil {
-		return nil, fmt.Errorf("could not create request for %v: %v", url, err)
-	}
-	fmt.Println(req.URL)
-	req.Header.Set("X-Riot-Token", m.APIKey)
-	resp, err := client.Do(req)
-	if err != nil {
-		return nil, fmt.Errorf("could not get %v: %v", req.URL, err)
-	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("server responded with error code %v", resp.StatusCode)
-	}
-	body, err := ioutil.ReadAll(resp.Body)
+	var res MatchListDTO
+	queryURL := filepath.Join(matchRootURL, matchListURL, accountID)
+	vals, err := url.ParseQuery(params.String())
 	if err != nil {
 		return nil, err
 	}
-	var matchListDTO MatchListDTO
-	if err = json.Unmarshal(body, &matchListDTO); err != nil {
+	err = c.query(ctx, queryURL, vals, &res)
+	if err != nil {
 		return nil, err
 	}
-	return &matchListDTO, nil
+	return &res, nil
 }
 
-func (m Match) TimelineByMatch(matchID string) (*MatchTimelineDTO, error) {
-	resp, err := util.GetResponse(m.APIKey, m.Region, rootURL+timelineURL, matchID)
+//TimelineByMatch gets the match timeline for the given matchID
+func (c *client) TimelineByMatch(ctx context.Context, matchID string) (*MatchTimelineDTO, error) {
+	var res MatchTimelineDTO
+	url := filepath.Join(matchRootURL, timelineURL, matchID)
+	err := c.query(ctx, url, nil, &res)
 	if err != nil {
 		return nil, err
 	}
-	defer resp.Body.Close()
-	if resp.StatusCode != http.StatusOK {
-		return nil, fmt.Errorf("server responded with error code %v", resp.StatusCode)
-	}
-	body, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-	var matchTimelineDTO MatchTimelineDTO
-	if err = json.Unmarshal(body, &matchTimelineDTO); err != nil {
-		return nil, err
-	}
-	return &matchTimelineDTO, nil
+	return &res, nil
 }
 
 func (m MatchDTO) String() string {
@@ -400,10 +344,10 @@ func (p ParticipantDTO) String() string {
 
 func (m MatchQueryParams) String() string {
 	var queryParams strings.Builder
-	if len(m.Champion) == 0 && len(m.Queue) == 0 && len(m.Season) == 0 && m.BeginTime < 0 && m.EndTime < 0 && m.BeginIndex < 0 && m.EndIndex < 0 {
+	if len(m.Champion) == 0 && len(m.Queue) == 0 && len(m.Season) == 0 && *m.BeginTime < 0 && *m.EndTime < 0 && *m.BeginIndex < 0 && *m.EndIndex < 0 {
 		return ""
 	}
-	queryParams.WriteString("?")
+	//queryParams.WriteString("?")
 	if len(m.Champion) != 0 {
 		for _, c := range m.Champion {
 			queryParams.WriteString(fmt.Sprintf("champion=%v&", c))
@@ -419,16 +363,16 @@ func (m MatchQueryParams) String() string {
 			queryParams.WriteString(fmt.Sprintf("season=%v&", s))
 		}
 	}
-	if m.BeginTime >= 0 {
+	if *m.BeginTime >= 0 {
 		queryParams.WriteString(fmt.Sprintf("beginTime=%v&", m.BeginTime))
 	}
-	if m.EndTime >= 0 {
+	if *m.EndTime >= 0 {
 		queryParams.WriteString(fmt.Sprintf("endTime=%v&", m.EndTime))
 	}
-	if m.BeginIndex >= 0 {
+	if *m.BeginIndex >= 0 {
 		queryParams.WriteString(fmt.Sprintf("beginIndex=%v&", m.BeginIndex))
 	}
-	if m.EndIndex >= 0 {
+	if *m.EndIndex >= 0 {
 		queryParams.WriteString(fmt.Sprintf("endIndex=%v&", m.EndIndex))
 	}
 	s := queryParams.String()
