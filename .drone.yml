@@ -4,6 +4,13 @@ name: default
 steps:
 - name: test
   image: golang
+  volumes:
+  - name: deps
+    path: /go
   commands:
   - go build
   - go test
+
+volumes:
+- name: deps
+  temp: {}
