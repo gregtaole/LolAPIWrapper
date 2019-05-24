@@ -2,25 +2,23 @@ package lolapiwrapper
 
 import (
 	"context"
-	"encoding/json"
 	"fmt"
 	"io/ioutil"
-	"log"
 	"net/http"
 	"net/http/httptest"
-	"os"
 	"testing"
 	"time"
 
 	"golang.org/x/time/rate"
 )
 
-var apiKey = os.Getenv("API_KEY")
-var limiter = rate.NewLimiter(20, 1)
-var doer = http.DefaultClient
-var c = NewClient(apiKey, "euw1", doer, limiter)
-
 func TestChampionMasteriesBySummoner(t *testing.T) {
+	limiter := rate.NewLimiter(20, 1)
+	doer := http.DefaultClient
+	c := client{
+		HTTPClient: doer,
+		Limiter:    limiter,
+	}
 	var tests = []struct {
 		summonerID string
 		want       []ChampionMasteryDTO
@@ -61,36 +59,18 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 			},
 		}},
 	}
-	type Data struct {
-		ID   string
-		data []ChampionMasteryDTO
-	}
-	file, err := os.Open("championmastery_test.json")
-	if err != nil {
-		t.Fatalf("could not find test data: %v", err)
-	}
-	defer file.Close()
-	var data []Data
-	b, err := ioutil.ReadAll(file)
-	if err != nil {
-		log.Fatalf("could not read test data: %v", err)
-	}
-	err = json.Unmarshal(b, &data)
-	if err != nil {
-		log.Fatalf("could not unmarshal test data: %v", err)
-	}
-	dataMap := make(map[string]Data)
 
 	for _, test := range tests {
+		jsonData, err := ioutil.ReadFile("test_data/championmastery/by_summoner/" + test.summonerID + ".json")
+		if err != nil {
+			t.Fatalf("could not open test data file: %v", err)
+		}
 		server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Content-Type", "application/json")
-			jsonData, err := json.Marshal(dataMap[test.summonerID].data)
-			if err != nil {
-				t.Fatalf("could marshal test data to json: %v", err)
-			}
 			fmt.Fprintf(w, "%s", jsonData)
 		}))
 		defer server.Close()
+		c.URLBuilder = func(string, string, string) string { return server.URL }
 		cm := ChampionMasteryDTO{}
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()

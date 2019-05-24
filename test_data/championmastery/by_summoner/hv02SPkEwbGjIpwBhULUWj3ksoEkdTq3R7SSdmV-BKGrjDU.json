@@ -1,0 +1,35 @@
+[
+    {
+        "chestGranted": true,
+        "championLevel": 7,
+        "championPoints": 327836,
+        "championId": 67,
+        "championPointsUntilNextLevel": 0,
+        "lastPlayTime": 1537292391000,
+        "tokensEarned": 0,
+        "championPointsSinceLastLevel": 306236,
+        "summonerId": "hv02SPkEwbGjIpwBhULUWj3ksoEkdTq3R7SSdmV-BKGrjDU" 
+    },
+    {
+        "chestGranted": false,
+        "championLevel": 7,
+        "championPoints": 165050,
+        "championId": 245,
+        "championPointsUntilNextLevel": 0,
+        "lastPlayTime": 1532097472000,
+        "tokensEarned": 0,
+        "championPointsSinceLastLevel": 143450,
+        "summonerId": "hv02SPkEwbGjIpwBhULUWj3ksoEkdTq3R7SSdmV-BKGrjDU"
+    },
+    {
+        "chestGranted": false,
+        "championLevel": 7,
+        "championPoints": 150177,
+        "championId": 202,
+        "championPointsUntilNextLevel": 0,
+        "lastPlayTime": 1535564280000,
+        "tokensEarned": 0,
+        "championPointsSinceLastLevel": 128577,
+        "summonerId": "hv02SPkEwbGjIpwBhULUWj3ksoEkdTq3R7SSdmV-BKGrjDU"
+    }
+]

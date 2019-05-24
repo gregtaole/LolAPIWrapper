@@ -24,6 +24,11 @@ type Limiter interface {
 }
 
 /*
+URLBuilder is an interface to build the full URL by providing the region, the query url and the parameters
+*/
+type URLBuilder func(string, string, string) string
+
+/*
 Client is the interface to access the Riot API
 */
 type Client interface {
@@ -82,6 +87,7 @@ type client struct {
 	Region     string
 	HTTPClient Doer
 	Limiter    Limiter
+	URLBuilder URLBuilder
 }
 
 /*
@@ -106,6 +112,7 @@ func NewClient(APIKey string, region string, httpClient Doer, limiter Limiter) C
 		Region:     region,
 		HTTPClient: httpClient,
 		Limiter:    limiter,
+		URLBuilder: buildURL,
 	}
 }
 
@@ -114,7 +121,7 @@ func (c *client) query(ctx context.Context, url string, params url.Values, res i
 	if params != nil {
 		suffix = fmt.Sprintf("?%s", params.Encode())
 	}
-	fullURL = fmt.Sprintf("https://%v.api.riotgames.com/lol/%v%v", c.Region, url, suffix)
+	fullURL = c.URLBuilder(c.Region, url, suffix)
 	fmt.Println(fullURL)
 	req, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
@@ -142,4 +149,8 @@ func (c *client) query(ctx context.Context, url string, params url.Values, res i
 	err = json.Unmarshal(body, res)
 
 	return err
+}
+
+func buildURL(region, url, suffix string) string {
+	return fmt.Sprintf("https://%v.api.riotgames.com/lol/%v%v", region, url, suffix)
 }
