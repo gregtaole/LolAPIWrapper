@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 )
@@ -35,51 +34,51 @@ type Client interface {
 	// Champion Mastery API
 
 	// ChampionMasteriesBySummoner gets all champion masteries for summonerID
-	ChampionMasteriesBySummoner(ctx context.Context, summonerID string) (*[]ChampionMasteryDTO, error)
+	ChampionMasteriesBySummoner(ctx context.Context, summonerID string) ([]ChampionMasteryDTO, error)
 	// ChampionMasteriesBySummonerByChampion gets the mastery score for championID for summonerID
-	ChampionMasteriesBySummonerByChampion(ctx context.Context, summonerID string, championID int) (*ChampionMasteryDTO, error)
+	ChampionMasteriesBySummonerByChampion(ctx context.Context, summonerID string, championID int) (ChampionMasteryDTO, error)
 	// ScoresBySummoner gets all mastery scores for summonerID
-	ScoresBySummoner(ctx context.Context, summonerID string) (*int, error)
+	ScoresBySummoner(ctx context.Context, summonerID string) (int, error)
 
 	// League API
 
 	// ChallengerLeagueByQueue gets challenger leagues for the given queue type
-	ChallengerLeagueByQueue(ctx context.Context, queue QueueType) (*LeagueListDTO, error)
+	ChallengerLeagueByQueue(ctx context.Context, queue QueueType) (LeagueListDTO, error)
 	// GrandmasterLeagueByQueue gets grandmaster leagues for the given queue type
-	GrandmasterLeagueByQueue(ctx context.Context, queue QueueType) (*LeagueListDTO, error)
+	GrandmasterLeagueByQueue(ctx context.Context, queue QueueType) (LeagueListDTO, error)
 	// MasterLeagueByQueue gets master leagues for the given queue type
-	MasterLeagueByQueue(ctx context.Context, queue QueueType) (*LeagueListDTO, error)
+	MasterLeagueByQueue(ctx context.Context, queue QueueType) (LeagueListDTO, error)
 	// PositionsBySummoner gets the positions for summonerID
 	PositionsBySummoner(ctx context.Context, summonerID string) ([]LeaguePositionDTO, error)
 	// Leagues gets the leagues for the given leagueID
-	Leagues(ctx context.Context, leagueID string) (*LeagueListDTO, error)
+	Leagues(ctx context.Context, leagueID string) (LeagueListDTO, error)
 
 	// Match API
 
 	// MatchesByID gets the match information for the given matchID
-	MatchesByID(ctx context.Context, matchID string) (*MatchDTO, error)
+	MatchesByID(ctx context.Context, matchID string) (MatchDTO, error)
 	// MatchListByAccount gets the match list for the given accountID filtered by params
-	MatchListByAccount(ctx context.Context, accountID string, params MatchQueryParams) (*MatchListDTO, error)
+	MatchListByAccount(ctx context.Context, accountID string, params MatchQueryParams) (MatchListDTO, error)
 	//TimelineByMatch gets the match timeline for the given matchID
-	TimelineByMatch(ctx context.Context, matchID string) (*MatchTimelineDTO, error)
+	TimelineByMatch(ctx context.Context, matchID string) (MatchTimelineDTO, error)
 
 	// Summoner API
 
 	// SummonerByAccount gets summoner information for the given accountID
-	SummonerByAccount(ctx context.Context, accountID string) (*SummonerDTO, error)
+	SummonerByAccount(ctx context.Context, accountID string) (SummonerDTO, error)
 	// SummonerByName gets summoner information for the given name
-	SummonerByName(ctx context.Context, name string) (*SummonerDTO, error)
+	SummonerByName(ctx context.Context, name string) (SummonerDTO, error)
 	// SummonerByPuuid gets summoner information for the given puuid
-	SummonerByPuuid(ctx context.Context, puuid string) (*SummonerDTO, error)
+	SummonerByPuuid(ctx context.Context, puuid string) (SummonerDTO, error)
 	// SummonerByID gets summoner informatino for the given ID
-	SummonerByID(ctx context.Context, ID string) (*SummonerDTO, error)
+	SummonerByID(ctx context.Context, ID string) (SummonerDTO, error)
 
 	// Spectator API
 
 	// ActiveGamesBySummoner gets the current game information for the given summonerID
-	ActiveGamesBySummoner(ctx context.Context, summonerID string) (*CurrentGameInfoDTO, error)
+	ActiveGamesBySummoner(ctx context.Context, summonerID string) (CurrentGameInfoDTO, error)
 	// FeaturedGames gets a list of featured games
-	FeaturedGames(ctx context.Context) (*FeaturedGamesDTO, error)
+	FeaturedGames(ctx context.Context) (FeaturedGamesDTO, error)
 }
 
 type client struct {
@@ -142,11 +141,13 @@ func (c *client) query(ctx context.Context, url string, params url.Values, res i
 	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("server responded with error code %v", resp.StatusCode)
 	}
-	body, err := ioutil.ReadAll(resp.Body)
+	/* body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		return err
 	}
-	err = json.Unmarshal(body, res)
+	err = json.Unmarshal(body, res) */
+	decoder := json.NewDecoder(resp.Body)
+	err = decoder.Decode(&res)
 
 	return err
 }

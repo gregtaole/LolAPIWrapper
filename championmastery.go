@@ -28,36 +28,36 @@ type ChampionMasteryDTO struct {
 }
 
 // ChampionMasteriesBySummoner gets all champion masteries for summonerID
-func (c *client) ChampionMasteriesBySummoner(ctx context.Context, summonerID string) (*[]ChampionMasteryDTO, error) {
+func (c *client) ChampionMasteriesBySummoner(ctx context.Context, summonerID string) ([]ChampionMasteryDTO, error) {
 	var res []ChampionMasteryDTO
 	url := filepath.Join(masteryRootURL, bySummonerURL, summonerID)
 	err := c.query(ctx, url, nil, &res)
 	if err != nil {
 		return nil, err
 	}
-	return &res, nil
+	return res, nil
 }
 
 // ChampionMasteriesBySummonerByChampion gets the mastery score for championID for summonerID
-func (c *client) ChampionMasteriesBySummonerByChampion(ctx context.Context, summonerID string, championID int) (*ChampionMasteryDTO, error) {
+func (c *client) ChampionMasteriesBySummonerByChampion(ctx context.Context, summonerID string, championID int) (ChampionMasteryDTO, error) {
 	var res ChampionMasteryDTO
 	url := filepath.Join(masteryRootURL, bySummonerURL, summonerID, byChampionURL, strconv.Itoa(championID))
 	err := c.query(ctx, url, nil, &res)
 	if err != nil {
-		return nil, err
+		return res, err
 	}
-	return &res, nil
+	return res, nil
 }
 
 // ScoresBySummoner gets the total mastery score for summonerID
-func (c *client) ScoresBySummoner(ctx context.Context, summonerID string) (*int, error) {
+func (c *client) ScoresBySummoner(ctx context.Context, summonerID string) (int, error) {
 	var res int
 	url := filepath.Join(masteryRootURL, scoresURL, summonerID)
 	err := c.query(ctx, url, nil, &res)
 	if err != nil {
-		return nil, err
+		return res, err
 	}
-	return &res, nil
+	return res, nil
 }
 
 func (cmd ChampionMasteryDTO) String() string {

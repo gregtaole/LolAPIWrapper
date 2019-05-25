@@ -15,6 +15,7 @@ const (
 	timelineURL  = "timelines/by-match"
 )
 
+/*MatchDTO …*/
 type MatchDTO struct {
 	SeasonID              int                      `json:"seasonId"`
 	QueueID               int                      `json:"queueId"`
@@ -31,11 +32,13 @@ type MatchDTO struct {
 	GameCreation          int                      `json:"gameCreation"`
 }
 
+/*ParticipantIdentityDTO …*/
 type ParticipantIdentityDTO struct {
 	Player        PlayerDTO `json:"player"`
 	ParticipantID int       `json:"participantId"`
 }
 
+/*PlayerDTO …*/
 type PlayerDTO struct {
 	CurrentPlatformID string `json:"currentPlatformId"`
 	SummonerName      string `json:"summonerName"`
@@ -47,6 +50,7 @@ type PlayerDTO struct {
 	AccountID         string `json:"accountId"`
 }
 
+/*TeamStatsDTO …*/
 type TeamStatsDTO struct {
 	FirstDragon          bool          `json:"firstDragon"`
 	FirstInhibitor       bool          `json:"firstInhibitor"`
@@ -66,11 +70,13 @@ type TeamStatsDTO struct {
 	DragonKills          int           `json:"dragonKills"`
 }
 
+/*TeamBansDTO …*/
 type TeamBansDTO struct {
 	PickTurn   int `json:"pickTurn"`
 	ChampionID int `json:"championId"`
 }
 
+/*ParticipantDTO …*/
 type ParticipantDTO struct {
 	Stats                     ParticipantStatsDTO    `json:"stats"`
 	ParticipantID             int                    `json:"participantID"`
@@ -84,6 +90,7 @@ type ParticipantDTO struct {
 	ChampionID                int                    `json:"championId"`
 }
 
+/*ParticipantStatsDTO …*/
 type ParticipantStatsDTO struct {
 	FirstBloodAssist                bool `json:"firstBloodAssist"`
 	VisionScore                     int  `json:"visionScore"`
@@ -195,11 +202,13 @@ type ParticipantStatsDTO struct {
 	TimeCCingOthers                 int  `json:"timeCCingOthers"`
 }
 
+/*RuneDTO …*/
 type RuneDTO struct {
 	RuneID int `json:"runeId"`
 	Rank   int `json:"rank"`
 }
 
+/*ParticipantTimelineDTO …*/
 type ParticipantTimelineDTO struct {
 	Lane                        string             `json:"lane"`
 	ParticipantID               int                `json:"participantId"`
@@ -213,11 +222,13 @@ type ParticipantTimelineDTO struct {
 	DamageTakenPerMinDeltas     map[string]float64 `json:"damageTakenPerMinDeltas"`
 }
 
+/*MasteryDTO …*/
 type MasteryDTO struct {
 	MasteryID int `json:"masteryId"`
 	Rank      int `json:"rank"`
 }
 
+/*MatchListDTO …*/
 type MatchListDTO struct {
 	Matches    []MatchReferenceDTO `json:"matches"`
 	TotalGames int                 `json:"totalGames"`
@@ -225,6 +236,7 @@ type MatchListDTO struct {
 	EndIndex   int                 `json:"endIndex"`
 }
 
+/*MatchReferenceDTO …*/
 type MatchReferenceDTO struct {
 	Lane       string `json:"lane"`
 	GameID     int    `json:"gameId"`
@@ -236,17 +248,20 @@ type MatchReferenceDTO struct {
 	Season     int    `json:"season"`
 }
 
+/*MatchTimelineDTO …*/
 type MatchTimelineDTO struct {
 	Frames        []MatchFrameDTO `json:"frames"`
 	FrameInterval int             `json:"FrameInterval"`
 }
 
+/*MatchFrameDTO …*/
 type MatchFrameDTO struct {
 	Timestamp         int                                 `json:"timestamp"`
 	ParticipantFrames map[string]MatchParticipantFrameDTO `json:"participantFrames"`
 	Events            []MatchEventDTO                     `json:"events"`
 }
 
+/*MatchParticipantFrameDTO …*/
 type MatchParticipantFrameDTO struct {
 	TotalGold           int              `json:"totalGold"`
 	TeamScore           int              `json:"teamScore"`
@@ -260,11 +275,13 @@ type MatchParticipantFrameDTO struct {
 	JungleMinionsKilled int              `json:"jungleMinionsKilled"`
 }
 
+/*MatchPositionDTO …*/
 type MatchPositionDTO struct {
 	X int `json:"x"`
 	Y int `json:"y"`
 }
 
+/*MatchEventDTO …*/
 type MatchEventDTO struct {
 	EventType               string           `json:"eventType"`
 	TowerType               string           `json:"towerType"`
@@ -292,46 +309,46 @@ type MatchEventDTO struct {
 }
 
 // MatchesByID gets the match information for the given matchID
-func (c *client) MatchesByID(ctx context.Context, matchID string) (*MatchDTO, error) {
+func (c *client) MatchesByID(ctx context.Context, matchID string) (MatchDTO, error) {
 	var res MatchDTO
 	url := filepath.Join(matchRootURL, matchURL, matchID)
 	err := c.query(ctx, url, nil, &res)
 	if err != nil {
-		return nil, err
+		return res, err
 	}
-	return &res, nil
+	return res, nil
 }
 
 // MatchListByAccount gets the match list for the given accountID filtered by params
-func (c *client) MatchListByAccount(ctx context.Context, accountID string, params MatchQueryParams) (*MatchListDTO, error) {
+func (c *client) MatchListByAccount(ctx context.Context, accountID string, params MatchQueryParams) (MatchListDTO, error) {
+	var res MatchListDTO
 	if *params.BeginIndex >= 0 && *params.EndIndex >= 0 && *params.BeginIndex < *params.EndIndex {
-		return nil, fmt.Errorf("MatchQueryParams.BeginIndex should be greater than MatchQueryParams.EndIndex when both are passed: %v < %v", params.EndIndex, params.BeginIndex)
+		return res, fmt.Errorf("MatchQueryParams.BeginIndex should be greater than MatchQueryParams.EndIndex when both are passed: %v < %v", params.EndIndex, params.BeginIndex)
 	}
 	if *params.BeginTime >= 0 && *params.EndTime >= 0 && *params.BeginTime < *params.EndTime {
-		return nil, fmt.Errorf("MatchQueryParams.BeginTime should be greater than MatchQueryParams.EndTime when both are passed: %v < %v", params.EndTime, params.BeginTime)
+		return res, fmt.Errorf("MatchQueryParams.BeginTime should be greater than MatchQueryParams.EndTime when both are passed: %v < %v", params.EndTime, params.BeginTime)
 	}
-	var res MatchListDTO
 	queryURL := filepath.Join(matchRootURL, matchListURL, accountID)
 	vals, err := url.ParseQuery(params.String())
 	if err != nil {
-		return nil, err
+		return res, err
 	}
 	err = c.query(ctx, queryURL, vals, &res)
 	if err != nil {
-		return nil, err
+		return res, err
 	}
-	return &res, nil
+	return res, nil
 }
 
 //TimelineByMatch gets the match timeline for the given matchID
-func (c *client) TimelineByMatch(ctx context.Context, matchID string) (*MatchTimelineDTO, error) {
+func (c *client) TimelineByMatch(ctx context.Context, matchID string) (MatchTimelineDTO, error) {
 	var res MatchTimelineDTO
 	url := filepath.Join(matchRootURL, timelineURL, matchID)
 	err := c.query(ctx, url, nil, &res)
 	if err != nil {
-		return nil, err
+		return res, err
 	}
-	return &res, nil
+	return res, nil
 }
 
 func (m MatchDTO) String() string {

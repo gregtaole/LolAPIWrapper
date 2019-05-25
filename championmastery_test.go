@@ -71,15 +71,14 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 		}))
 		defer server.Close()
 		c.URLBuilder = func(string, string, string) string { return server.URL }
-		cm := ChampionMasteryDTO{}
 		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 		defer cancel()
 		got, err := c.ChampionMasteriesBySummoner(ctx, test.summonerID)
 		if err != nil {
 			t.Errorf("query returned with error: %v", err)
 		}
-		if ChampionMasteryDTOSliceEqual(*got, test.want) {
-			t.Errorf("%v = %v, want %v", cm, got, test.want)
+		if !ChampionMasteryDTOSliceEqual(got, test.want) {
+			t.Errorf("%v, want %v", got, test.want)
 		}
 	}
 
@@ -87,10 +86,12 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 
 func ChampionMasteryDTOSliceEqual(a, b []ChampionMasteryDTO) bool {
 	if len(a) != len(b) {
+		fmt.Println("lengths do not match")
 		return false
 	}
 	for i, v := range a {
 		if v != b[i] {
+			fmt.Println("elements do not match")
 			return false
 		}
 	}
