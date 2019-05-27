@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"path/filepath"
+	"strings"
 )
 
 const (
@@ -15,13 +16,13 @@ const (
 
 /*SummonerDTO …*/
 type SummonerDTO struct {
-	ProfileIconID int    `json:"profileIconId"`
 	Name          string `json:"name"`
-	Puuid         string `json:"puuid"`
-	SummonerLevel int    `json:"summonerLevel"`
-	RevisionDate  int    `json:"revisionDate"`
 	ID            string `json:"id"`
 	AccountID     string `json:"accountId"`
+	Puuid         string `json:"puuid"`
+	SummonerLevel int    `json:"summonerLevel"`
+	ProfileIconID int    `json:"profileIconId"`
+	RevisionDate  int    `json:"revisionDate"`
 }
 
 // SummonerByAccount gets summoner information for the given accountID
@@ -69,5 +70,15 @@ func (c *client) SummonerByID(ctx context.Context, ID string) (SummonerDTO, erro
 }
 
 func (s SummonerDTO) String() string {
-	return fmt.Sprintf("Name: %v,\nAccountID: %v,\nID: %v,\nPUUID: %v,\nSummonerLevel: %v,\nRevisionDate: %v,\nProfileIconID: %v", s.Name, s.AccountID, s.ID, s.Puuid, s.SummonerLevel, s.RevisionDate, s.ProfileIconID)
+	var str strings.Builder
+	str.WriteString("SummonerDTO{\n")
+	str.WriteString(fmt.Sprintf("    Name: %v,\n", s.Name))
+	str.WriteString(fmt.Sprintf("    ID: %v,\n", s.ID))
+	str.WriteString(fmt.Sprintf("    AccountID: %v,\n", s.AccountID))
+	str.WriteString(fmt.Sprintf("    Puuid: %v,\n", s.Puuid))
+	str.WriteString(fmt.Sprintf("    SummonerLevel: %v,\n", s.SummonerLevel))
+	str.WriteString(fmt.Sprintf("    ProfileIconID: %v,\n", s.ProfileIconID))
+	str.WriteString(fmt.Sprintf("    RevisionDate: %v,\n", s.RevisionDate))
+	str.WriteString("}")
+	return str.String()
 }

@@ -164,7 +164,6 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 			},
 		}},
 	}
-
 	for _, test := range tests {
 		jsonData, err := ioutil.ReadFile("test_data/championmastery/by_summoner/" + test.summonerID + ".json")
 		if err != nil {
@@ -186,7 +185,6 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 			t.Errorf("%v, want %v", got, test.want)
 		}
 	}
-
 }
 
 func TestChampionMasteriesBySummonerByChampion(t *testing.T) {
