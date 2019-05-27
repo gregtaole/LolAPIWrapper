@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"path/filepath"
 	"strconv"
+	"strings"
 )
 
 const (
@@ -61,5 +62,17 @@ func (c *client) ScoresBySummoner(ctx context.Context, summonerID string) (int, 
 }
 
 func (cmd ChampionMasteryDTO) String() string {
-	return fmt.Sprintf("%v: %v\n", cmd.ChampionID, cmd.ChampionLevel)
+	var str strings.Builder
+	str.WriteString("ChampionMasteryDTO{\n")
+	str.WriteString(fmt.Sprintf("    ChampionID: %v,\n", cmd.ChampionID))
+	str.WriteString(fmt.Sprintf("    ChampionLevel: %v,\n", cmd.ChampionLevel))
+	str.WriteString(fmt.Sprintf("    ChampionPoints: %v,\n", cmd.ChampionPoints))
+	str.WriteString(fmt.Sprintf("    ChampionPointsSinceLastLevel: %v,\n", cmd.ChampionPointsSinceLastLevel))
+	str.WriteString(fmt.Sprintf("    ChampionPointsUntilNextLevel: %v,\n", cmd.ChampionPointsUntilNextLevel))
+	str.WriteString(fmt.Sprintf("    ChestGranted: %v,\n", cmd.ChestGranted))
+	str.WriteString(fmt.Sprintf("    LastPlayTime: %v,\n", cmd.LastPlayTime))
+	str.WriteString(fmt.Sprintf("    TokensEarned: %v,\n", cmd.TokensEarned))
+	str.WriteString(fmt.Sprintf("    SummonerID: %v,\n", cmd.SummonerID))
+	str.WriteString("},\n")
+	return str.String()
 }

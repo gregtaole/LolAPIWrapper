@@ -1,35 +1,35 @@
 [
-    {
-        "chestGranted": true,
-        "championLevel": 5,
-        "championPoints": 112585,
-        "championId": 142,
-        "championPointsUntilNextLevel": 0,
-        "lastPlayTime": 1543619081000,
-        "tokensEarned": 0,
-        "championPointsSinceLastLevel": 90985,
-        "summonerId": "6RyT_m6Bn-iUd1n3xkOthI1BVpuLjWj8aUMD8nrJogfMpUrZ"
-    },
-    {
-        "chestGranted": true,
-        "championLevel": 5,
-        "championPoints": 32496,
-        "championId": 203,
-        "championPointsUntilNextLevel": 0,
-        "lastPlayTime": 1544888996000,
-        "tokensEarned": 0,
-        "championPointsSinceLastLevel": 10896,
-        "summonerId": "6RyT_m6Bn-iUd1n3xkOthI1BVpuLjWj8aUMD8nrJogfMpUrZ"
-    },
-    {
-        "chestGranted": true,
-        "championLevel": 4,
-        "championPoints": 17878,
-        "championId": 429,
-        "championPointsUntilNextLevel": 3722,
-        "lastPlayTime": 1539789673000,
-        "tokensEarned": 0,
-        "championPointsSinceLastLevel": 5278,
-        "summonerId": "6RyT_m6Bn-iUd1n3xkOthI1BVpuLjWj8aUMD8nrJogfMpUrZ"
-    }
+  {
+    "chestGranted": true,
+    "championLevel": 5,
+    "championPoints": 112756,
+    "championId": 142,
+    "championPointsUntilNextLevel": 0,
+    "lastPlayTime": 1543619081000,
+    "tokensEarned": 0,
+    "championPointsSinceLastLevel": 91156,
+    "summonerId": "6RyT_m6Bn-iUd1n3xkOthI1BVpuLjWj8aUMD8nrJogfMpUrZ"
+  },
+  {
+    "chestGranted": true,
+    "championLevel": 5,
+    "championPoints": 32637,
+    "championId": 203,
+    "championPointsUntilNextLevel": 0,
+    "lastPlayTime": 1544888996000,
+    "tokensEarned": 0,
+    "championPointsSinceLastLevel": 11037,
+    "summonerId": "6RyT_m6Bn-iUd1n3xkOthI1BVpuLjWj8aUMD8nrJogfMpUrZ"
+  },
+  {
+    "chestGranted": true,
+    "championLevel": 4,
+    "championPoints": 17878,
+    "championId": 429,
+    "championPointsUntilNextLevel": 3722,
+    "lastPlayTime": 1539789673000,
+    "tokensEarned": 0,
+    "championPointsSinceLastLevel": 5278,
+    "summonerId": "6RyT_m6Bn-iUd1n3xkOthI1BVpuLjWj8aUMD8nrJogfMpUrZ"
+  }
 ]
