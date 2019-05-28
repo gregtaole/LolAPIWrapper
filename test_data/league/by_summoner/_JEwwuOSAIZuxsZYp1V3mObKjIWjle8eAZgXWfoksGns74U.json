@@ -1,0 +1,23 @@
+[
+  {
+    "summonerName": "Mikrogeo",
+    "summonerId": "_JEwwuOSAIZuxsZYp1V3mObKjIWjle8eAZgXWfoksGns74U",
+    "leagueId": "7459b630-6492-11e9-896f-c81f66dd0e0d",
+    "queueType": "RANKED_FLEX_SR",
+    "tier": "GOLD",
+    "rank": "IV",
+    "leaguePoints": 40,
+    "wins": 7,
+    "losses": 11,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  }
+]

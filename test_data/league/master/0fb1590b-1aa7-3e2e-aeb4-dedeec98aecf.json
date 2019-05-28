@@ -1,0 +1,62 @@
+{
+  "leagueId": "0fb1590b-1aa7-3e2e-aeb4-dedeec98aecf",
+  "queue": "RANKED_SOLO_5x5",
+  "name": "Taric's Elementalists",
+  "tier": "MASTER",
+  "entries": [
+    {
+      "summonerName": "ChenDuxiu NB",
+      "summonerID": "mgRSGTw_XBev7HEt7IWYjaTy_D45HYoTklcrb0KgcqtB85A",
+      "rank": "I",
+      "leaguePoints": 76,
+      "wins": 103,
+      "losses": 79,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": true,
+      "veteran": false,
+      "inactive": false
+    },
+    {
+      "summonerName": "Héphaïstoz",
+      "summonerID": "RxOQJS-u4uNRvEVrxcETr7nJ7uP9CdR8OPolUYbXPCAcPV8",
+      "rank": "I",
+      "leaguePoints": 0,
+      "wins": 93,
+      "losses": 74,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": false,
+      "veteran": false,
+      "inactive": false
+    },
+    {
+      "summonerName": "OP Tarzan",
+      "summonerID": "jEUwCPgdU06CrUDBNYG-NyYk5ENPfmsVRwWhXckGsqpKw1Ks",
+      "rank": "I",
+      "leaguePoints": 21,
+      "wins": 386,
+      "losses": 368,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": false,
+      "veteran": false,
+      "inactive": false
+    }
+  ]
+}

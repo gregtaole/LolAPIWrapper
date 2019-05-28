@@ -1,0 +1,44 @@
+[
+  {
+    "summonerName": "Nidiot",
+    "summonerId": "r8W3oVPJSLNYDrfJJx5q4logzaYZL319R0BA6lZjn0TejCad",
+    "leagueId": "",
+    "queueType": "RANKED_FLEX_SR",
+    "tier": "DIAMOND",
+    "rank": "II",
+    "leaguePoints": 43,
+    "wins": 19,
+    "losses": 20,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  },
+  {
+    "summonerName": "Spitzweck",
+    "summonerId": "WuVfweNkFRIXG_LeZJLZpHIPBLsFDDHsVzOhz98DWfUwf6-0",
+    "leagueId": "",
+    "queueType": "RANKED_FLEX_SR",
+    "tier": "DIAMOND",
+    "rank": "II",
+    "leaguePoints": 0,
+    "wins": 14,
+    "losses": 11,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  }
+]

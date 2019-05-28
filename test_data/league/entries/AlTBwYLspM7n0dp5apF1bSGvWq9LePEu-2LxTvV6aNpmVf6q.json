@@ -1,0 +1,44 @@
+[
+  {
+    "summonerName": "dav1d 370",
+    "summonerId": "AlTBwYLspM7n0dp5apF1bSGvWq9LePEu-2LxTvV6aNpmVf6q",
+    "leagueId": "",
+    "queueType": "RANKED_SOLO_5x5",
+    "tier": "IRON",
+    "rank": "IV",
+    "leaguePoints": 75,
+    "wins": 10,
+    "losses": 16,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  },
+  {
+    "summonerName": "PTRusherPT",
+    "summonerId": "ng2FNb7hqYqinqCB1HhJyP8CieUqxb7aC6QA1sw4gUO_5KWy",
+    "leagueId": "",
+    "queueType": "RANKED_SOLO_5x5",
+    "tier": "IRON",
+    "rank": "IV",
+    "leaguePoints": 93,
+    "wins": 4,
+    "losses": 10,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  }
+]

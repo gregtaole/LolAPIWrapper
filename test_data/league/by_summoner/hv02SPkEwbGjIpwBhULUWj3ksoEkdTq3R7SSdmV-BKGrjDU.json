@@ -1,0 +1,44 @@
+[
+  {
+    "summonerName": "ZkCat",
+    "summonerId": "hv02SPkEwbGjIpwBhULUWj3ksoEkdTq3R7SSdmV-BKGrjDU",
+    "leagueId": "7459b630-6492-11e9-896f-c81f66dd0e0d",
+    "queueType": "RANKED_FLEX_SR",
+    "tier": "GOLD",
+    "rank": "III",
+    "leaguePoints": 46,
+    "wins": 8,
+    "losses": 11,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  },
+  {
+    "summonerName": "ZkCat",
+    "summonerId": "hv02SPkEwbGjIpwBhULUWj3ksoEkdTq3R7SSdmV-BKGrjDU",
+    "leagueId": "e4c72470-208b-11e9-9883-c81f66dd2a8f",
+    "queueType": "RANKED_SOLO_5x5",
+    "tier": "PLATINUM",
+    "rank": "II",
+    "leaguePoints": 21,
+    "wins": 18,
+    "losses": 24,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  }
+]

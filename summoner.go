@@ -79,6 +79,6 @@ func (s SummonerDTO) String() string {
 	str.WriteString(fmt.Sprintf("    SummonerLevel: %v,\n", s.SummonerLevel))
 	str.WriteString(fmt.Sprintf("    ProfileIconID: %v,\n", s.ProfileIconID))
 	str.WriteString(fmt.Sprintf("    RevisionDate: %v,\n", s.RevisionDate))
-	str.WriteString("}")
+	str.WriteString("},\n")
 	return str.String()
 }

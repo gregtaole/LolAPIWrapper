@@ -1,0 +1,62 @@
+{
+  "leagueId": "65ebcd4f-368c-30f6-a635-976beb0e1a8c",
+  "queue": "RANKED_SOLO_5x5",
+  "name": "Varus's Outriders",
+  "tier": "CHALLENGER",
+  "entries": [
+    {
+      "summonerName": "Zumo de Manzana",
+      "summonerID": "Jj7dvFrZK_OIHWmGbCDe5HF7Om2voIPkDhjdA41SUDuCQdc",
+      "rank": "I",
+      "leaguePoints": 666,
+      "wins": 250,
+      "losses": 205,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": false,
+      "veteran": false,
+      "inactive": false
+    },
+    {
+      "summonerName": "GGA Supa",
+      "summonerID": "6HGVBbdDmTLVbKZZpRLWIiu91HY-9ko4FzE4hpLygB6kpAo",
+      "rank": "I",
+      "leaguePoints": 564,
+      "wins": 348,
+      "losses": 299,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": false,
+      "veteran": false,
+      "inactive": false
+    },
+    {
+      "summonerName": "Kobbe",
+      "summonerID": "IahjrYlNlFpMfuBX9Gj3iPwc9t7HI8mSh4sIPwC-eIo3pfo",
+      "rank": "I",
+      "leaguePoints": 679,
+      "wins": 344,
+      "losses": 293,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": false,
+      "veteran": true,
+      "inactive": false
+    }
+  ]
+}

@@ -9,7 +9,7 @@ steps:
     path: /go
   commands:
   - go build
-  - go test
+  - go test -v
 
 volumes:
 - name: deps

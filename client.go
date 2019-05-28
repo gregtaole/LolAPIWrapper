@@ -48,10 +48,12 @@ type Client interface {
 	GrandmasterLeagueByQueue(ctx context.Context, queue QueueType) (LeagueListDTO, error)
 	// MasterLeagueByQueue gets master leagues for the given queue type
 	MasterLeagueByQueue(ctx context.Context, queue QueueType) (LeagueListDTO, error)
-	// PositionsBySummoner gets the positions for summonerID
-	PositionsBySummoner(ctx context.Context, summonerID string) ([]LeaguePositionDTO, error)
 	// Leagues gets the leagues for the given leagueID
 	Leagues(ctx context.Context, leagueID string) (LeagueListDTO, error)
+	//Entries returns the entries in the given queue at the given tier and given division
+	Entries(ctx context.Context, queue QueueType, tier Tier, division Division) ([]LeagueEntryDTO, error)
+	//EntriesBySummoner returns the league entries for the given summoner ID
+	EntriesBySummoner(ctx context.Context, summonerID string) ([]LeagueEntryDTO, error)
 
 	// Match API
 
@@ -121,7 +123,7 @@ func (c *client) query(ctx context.Context, url string, params url.Values, res i
 		suffix = fmt.Sprintf("?%s", params.Encode())
 	}
 	fullURL = c.URLBuilder(c.Region, url, suffix)
-	//fmt.Println(fullURL)
+	fmt.Println(fullURL)
 	req, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
 		return err

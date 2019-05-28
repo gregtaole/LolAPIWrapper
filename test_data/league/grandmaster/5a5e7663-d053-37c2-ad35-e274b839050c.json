@@ -1,0 +1,62 @@
+{
+  "leagueId": "5a5e7663-d053-37c2-ad35-e274b839050c",
+  "queue": "RANKED_SOLO_5x5",
+  "name": "Syndra's Masterminds",
+  "tier": "GRANDMASTER",
+  "entries": [
+    {
+      "summonerName": "LUNARY CHAP",
+      "summonerID": "QjV4dx10upDVy8D5CXilE1UBt2JmKUWdN_LdOynozN945DU",
+      "rank": "I",
+      "leaguePoints": 511,
+      "wins": 187,
+      "losses": 150,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": true,
+      "veteran": false,
+      "inactive": false
+    },
+    {
+      "summonerName": "Rolinse",
+      "summonerID": "qgD53yHQzHGCqVmMs0U_UFGpmNJs-HzrkWoEyl8kND5hyZM",
+      "rank": "I",
+      "leaguePoints": 275,
+      "wins": 287,
+      "losses": 252,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": false,
+      "veteran": false,
+      "inactive": false
+    },
+    {
+      "summonerName": "Czajëkk",
+      "summonerID": "pA4bIOT-nlaexkpdNMRxuCSqdb_t7m6IDagNo9l4TpJvC1s",
+      "rank": "I",
+      "leaguePoints": 421,
+      "wins": 158,
+      "losses": 127,
+      "hotStreak": false,
+      "miniSeries": {
+        "wins": 0,
+        "losses": 0,
+        "target": 0,
+        "progress": ""
+      },
+      "freshBlood": false,
+      "veteran": false,
+      "inactive": false
+    }
+  ]
+}
