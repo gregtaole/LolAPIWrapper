@@ -179,7 +179,7 @@ func TestChampionMasteriesBySummoner(t *testing.T) {
 		defer cancel()
 		got, err := c.ChampionMasteriesBySummoner(ctx, test.summonerID)
 		if err != nil {
-			t.Errorf("query returned with error: %v", err)
+			t.Fatalf("query returned with error: %v", err)
 		}
 		if !ChampionMasteryDTOSliceEqual(got, test.want) {
 			t.Errorf("%v, want %v", got, test.want)
@@ -260,7 +260,7 @@ func TestChampionMasteriesBySummonerByChampion(t *testing.T) {
 		defer cancel()
 		got, err := c.ChampionMasteriesBySummonerByChampion(ctx, test.summonerID, test.championID)
 		if err != nil {
-			t.Errorf("query returned with error: %v", err)
+			t.Fatalf("query returned with error: %v", err)
 		}
 		if got != test.want {
 			t.Errorf("%v, want %v", got, test.want)
@@ -299,7 +299,7 @@ func TestScoresBySummoner(t *testing.T) {
 		defer cancel()
 		got, err := c.ScoresBySummoner(ctx, test.summonerID)
 		if err != nil {
-			t.Errorf("query returned with error: %v", err)
+			t.Fatalf("query returned with error: %v", err)
 		}
 		if got != test.want {
 			t.Errorf("%v, want %v", got, test.want)

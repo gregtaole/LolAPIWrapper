@@ -1,0 +1,65 @@
+[
+  {
+    "summonerName": "GOAT Jungler",
+    "summonerId": "fIN2VYHD6XgVsc4XdYh5kXt4tlqpC3hZtj7nW5t4c3Edtjcm",
+    "leagueId": "",
+    "queueType": "RANKED_FLEX_TT",
+    "tier": "DIAMOND",
+    "rank": "I",
+    "leaguePoints": 75,
+    "wins": 136,
+    "losses": 122,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  },
+  {
+    "summonerName": "26 11 2000",
+    "summonerId": "tz6T8-BlWlXR0p-vQw4idWTRwmXUpJt72q-SeqPJv8pYlDl4",
+    "leagueId": "",
+    "queueType": "RANKED_FLEX_TT",
+    "tier": "DIAMOND",
+    "rank": "I",
+    "leaguePoints": 31,
+    "wins": 27,
+    "losses": 30,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  },
+  {
+    "summonerName": "Brave Nugget",
+    "summonerId": "DhgQd99LwAiIGTi3lm1jRR-abDC3M7wkjzgaMPSoXspIXBis",
+    "leagueId": "",
+    "queueType": "RANKED_FLEX_TT",
+    "tier": "DIAMOND",
+    "rank": "I",
+    "leaguePoints": 0,
+    "wins": 12,
+    "losses": 7,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  }
+]

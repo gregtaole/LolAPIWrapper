@@ -1,0 +1,65 @@
+[
+  {
+    "summonerName": "Bennouze",
+    "summonerId": "lvCSK82TNDHEiPzg_ib4sJkq2naWVw1FpggLlZQeFh9za-7g",
+    "leagueId": "",
+    "queueType": "RANKED_FLEX_SR",
+    "tier": "GOLD",
+    "rank": "II",
+    "leaguePoints": 40,
+    "wins": 105,
+    "losses": 101,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": true,
+    "inactive": false
+  },
+  {
+    "summonerName": "foop2legend",
+    "summonerId": "2D-hcgk5znPdkkjz1mKhkagH5mhDGsiKYn5oky-Tkhiruyul",
+    "leagueId": "",
+    "queueType": "RANKED_FLEX_SR",
+    "tier": "GOLD",
+    "rank": "II",
+    "leaguePoints": 100,
+    "wins": 112,
+    "losses": 93,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 1,
+      "losses": 1,
+      "target": 2,
+      "progress": "WLN"
+    },
+    "freshBlood": false,
+    "Veteran": true,
+    "inactive": false
+  },
+  {
+    "summonerName": "M 4 R X M K X V",
+    "summonerId": "7bY6HkVIai_QCkNtQgbz4fl6FbEaAlDxSfZsGEjeXE1bHADc",
+    "leagueId": "",
+    "queueType": "RANKED_FLEX_SR",
+    "tier": "GOLD",
+    "rank": "II",
+    "leaguePoints": 13,
+    "wins": 10,
+    "losses": 6,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
+  }
+]

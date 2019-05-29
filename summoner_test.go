@@ -75,7 +75,7 @@ func TestSummonerByAccount(t *testing.T) {
 		defer cancel()
 		got, err := c.SummonerByAccount(ctx, test.accountID)
 		if err != nil {
-			t.Errorf("query returned with error: %v", err)
+			t.Fatalf("query returned with error: %v", err)
 		}
 		if got != test.want {
 			t.Errorf("%v, want %v", got, test.want)
@@ -146,7 +146,7 @@ func TestSummonerByID(t *testing.T) {
 		defer cancel()
 		got, err := c.SummonerByAccount(ctx, test.ID)
 		if err != nil {
-			t.Errorf("query returned with error: %v", err)
+			t.Fatalf("query returned with error: %v", err)
 		}
 		if got != test.want {
 			t.Errorf("%v, want %v", got, test.want)
@@ -217,7 +217,7 @@ func TestSummonerByName(t *testing.T) {
 		defer cancel()
 		got, err := c.SummonerByAccount(ctx, test.name)
 		if err != nil {
-			t.Errorf("query returned with error: %v", err)
+			t.Fatalf("query returned with error: %v", err)
 		}
 		if got != test.want {
 			t.Errorf("%v, want %v", got, test.want)
@@ -288,7 +288,7 @@ func TestSummonerByPuuid(t *testing.T) {
 		defer cancel()
 		got, err := c.SummonerByAccount(ctx, test.puuid)
 		if err != nil {
-			t.Errorf("query returned with error: %v", err)
+			t.Fatalf("query returned with error: %v", err)
 		}
 		if got != test.want {
 			t.Errorf("%v, want %v", got, test.want)

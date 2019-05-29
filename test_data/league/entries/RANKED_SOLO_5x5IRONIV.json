@@ -40,5 +40,26 @@
     "freshBlood": false,
     "Veteran": false,
     "inactive": false
+  },
+  {
+    "summonerName": "sami1999co",
+    "summonerId": "95uI4FWETsscOdNfdDTtl57KCNL530jV6fTIlUJ-8Ev6W3xx",
+    "leagueId": "",
+    "queueType": "RANKED_SOLO_5x5",
+    "tier": "IRON",
+    "rank": "IV",
+    "leaguePoints": 95,
+    "wins": 19,
+    "losses": 21,
+    "hotStreak": false,
+    "miniSeries": {
+      "wins": 0,
+      "losses": 0,
+      "target": 0,
+      "progress": ""
+    },
+    "freshBlood": false,
+    "Veteran": false,
+    "inactive": false
   }
 ]
