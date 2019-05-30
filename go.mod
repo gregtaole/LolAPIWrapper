@@ -1,4 +1,4 @@
-module github.com/gregtaole/lolapiwrapper
+module gitea.gregtaole.fr/gregtaole/lolapiwrapper
 
 go 1.12
 
