@@ -123,7 +123,7 @@ func (c *client) query(ctx context.Context, url string, params url.Values, res i
 		suffix = fmt.Sprintf("?%s", params.Encode())
 	}
 	fullURL = c.URLBuilder(c.Region, url, suffix)
-	fmt.Println(fullURL)
+	//fmt.Println(fullURL)
 	req, err := http.NewRequest("GET", fullURL, nil)
 	if err != nil {
 		return err
